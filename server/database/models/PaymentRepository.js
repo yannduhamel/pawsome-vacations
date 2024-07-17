@@ -1,14 +1,14 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class RoleRepository extends AbstractRepository {
+class PaymentRepository extends AbstractRepository {
   constructor() {
-    super({ table: "role" });
+    super({ table: "payment" });
   }
 
-  async create(role) {
+  async create(payment) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (name) values (?)`,
-      [role.name]
+      `insert into ${this.table} (amount, date, method, reservation_id) values (?, ?, ?, ?)`,
+      [payment.amount, payment.date, payment.method, payment.reservation_id]
     );
 
     return result.insertId;
@@ -29,15 +29,6 @@ class RoleRepository extends AbstractRepository {
     return rows;
   }
 
-  async update(role) {
-    const [result] = await this.database.query(
-      `update ${this.table} set name = ? where id = ?`,
-      [role.name, role.id]
-    );
-
-    return result.affectedRows > 0;
-  }
-
   async delete(id) {
     const [result] = await this.database.query(
       `delete from ${this.table} where id = ?`,
@@ -48,4 +39,4 @@ class RoleRepository extends AbstractRepository {
   }
 }
 
-module.exports = RoleRepository;
+module.exports = PaymentRepository;

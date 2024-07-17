@@ -9,7 +9,7 @@ class RoleSeeder extends AbstractSeeder {
     for (let i = 0; i < 3; i += 1) {
       const fakeRole = {
         name: this.faker.word.noun(5),
-        refName: `user_${i}`,
+        refName: `role_${i}`,
       };
 
       this.insert(fakeRole);

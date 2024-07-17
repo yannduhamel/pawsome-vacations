@@ -1,14 +1,14 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class RoleRepository extends AbstractRepository {
+class AccomodationCategoryRepository extends AbstractRepository {
   constructor() {
-    super({ table: "role" });
+    super({ table: "acc_category" });
   }
 
-  async create(role) {
+  async create(accCategory) {
     const [result] = await this.database.query(
       `insert into ${this.table} (name) values (?)`,
-      [role.name]
+      [accCategory.name]
     );
 
     return result.insertId;
@@ -29,10 +29,10 @@ class RoleRepository extends AbstractRepository {
     return rows;
   }
 
-  async update(role) {
+  async update(accCategory) {
     const [result] = await this.database.query(
       `update ${this.table} set name = ? where id = ?`,
-      [role.name, role.id]
+      [accCategory.name, accCategory.id]
     );
 
     return result.affectedRows > 0;
@@ -48,4 +48,4 @@ class RoleRepository extends AbstractRepository {
   }
 }
 
-module.exports = RoleRepository;
+module.exports = AccomodationCategoryRepository;
