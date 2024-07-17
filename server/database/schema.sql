@@ -3,7 +3,7 @@ create table user (
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    phone_number VARCHAR(255) NOT NULL UNIQUE,
+    phone_number VARCHAR(255) UNIQUE,
     password VARCHAR(255) NOT NULL,
     profile_picture VARCHAR(255) NOT NULL,
     note INT UNSIGNED NOT NULL DEFAULT 0,

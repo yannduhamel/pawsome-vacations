@@ -10,10 +10,12 @@ const {
   destroy,
 } = require("../../../controllers/userActions");
 
+const validateUserSchema = require("../../../middlewares/validateUserSchema");
+
 router.get("/", browse);
 router.get("/:id", read);
-router.put("/:id", edit);
-router.post("/", add);
+router.put("/:id", validateUserSchema, edit);
+router.post("/", validateUserSchema, add);
 router.delete("/:id", destroy);
 
 module.exports = router;
