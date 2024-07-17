@@ -1,0 +1,126 @@
+.menu {
+  height: 50px;
+  width: 50px;
+  margin-right: 0.5em;
+}
+
+.navbarList {
+  background-color: var(--secondary-color);
+  list-style: none;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: -100vw;
+  bottom: 0;
+  height: 100%;
+  padding: 2em;
+  visibility: hidden;
+  transition: all 0.7s ease-out;
+}
+.menu.active .navbarList {
+  right: 0;
+  width: 100vw;
+  visibility: visible;
+}
+.navbarLink {
+  display: block;
+  text-decoration: none;
+  font-family: "Fredoka";
+  margin: 2em 0;
+  font-size: 2rem;
+  color: var(--second-color);
+}
+
+.navbarLink:visited {
+  color: #1d3557;
+}
+
+.navbarLink:hover {
+  color: #f28482;
+}
+
+.burgerMenu {
+  display: block;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+}
+
+.burgerMenu:hover {
+  cursor: pointer;
+}
+
+.burgerLine,
+.burgerLine::before,
+.burgerLine::after {
+  display: block;
+  width: 40px;
+  height: 4px;
+  position: relative;
+  border-radius: 3px;
+  background-color: var(--main-color);
+}
+.burgerLine::before,
+.burgerLine::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all 0.9s ease-in-out;
+}
+.burgerLine::before {
+  transform: translateY(-12px);
+}
+.burgerLine::after {
+  transform: translateY(12px);
+}
+.menu.active .burgerLine::before {
+  transform: rotate(135deg);
+}
+.menu.active .burgerLine::after {
+  transform: rotate(-135deg);
+}
+.menu.active .burgerLine {
+  width: 0;
+  background: transparent;
+  transition: 0.4s;
+}
+.menu.inactive .burgerLine {
+  width: 40px;
+  transition: 0.4s;
+}
+@media screen and (min-width: 761px) {
+  .navbarList {
+    flex-direction: row;
+    align-items: unset;
+    justify-content: end;
+    background-color: transparent;
+    height: 7em;
+    width: 70%;
+    padding: 0;
+    visibility: visible;
+    right: 0vw;
+    top: 0;
+    position: absolute;
+  }
+
+  .navbarItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbarLink {
+    padding: 0 2em;
+    margin: 0;
+    font-size: 1.3em;
+  }
+  .burgerMenu {
+    display: none;
+  }
+}

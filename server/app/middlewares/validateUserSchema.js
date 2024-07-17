@@ -1,13 +1,9 @@
-/* eslint-disable camelcase */
-
 const { z } = require("zod");
 
 const passwordRegex =
   /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,20}$/;
 
 const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
-
-const phoneRegex = /^[0-9]{10}$/;
 
 const userSchema = z.object({
   firstname: z
@@ -36,10 +32,6 @@ const userSchema = z.object({
     message: "Votre email n'a pas un format valide",
   }),
 
-  phone_number: z.string().regex(phoneRegex, {
-    message: "Votre numéro de téléphone doit contenir 10 chiffres",
-  }),
-
   password: z
     .string()
     .regex(passwordRegex, {
@@ -55,13 +47,12 @@ const userSchema = z.object({
 });
 
 const validateUserSchema = (req, res, next) => {
-  const { firstname, lastname, email, phone_number, password } = req.body;
+  const { firstname, lastname, email, password } = req.body;
 
   const validate = userSchema.safeParse({
     firstname,
     lastname,
     email,
-    phone_number,
     password,
   });
 

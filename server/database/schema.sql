@@ -5,9 +5,9 @@ create table user (
     email VARCHAR(255) NOT NULL UNIQUE,
     phone_number VARCHAR(255) UNIQUE,
     password VARCHAR(255) NOT NULL,
-    profile_picture VARCHAR(255) NOT NULL,
-    note INT UNSIGNED NOT NULL DEFAULT 0,
-    is_validated BOOLEAN NOT NULL DEFAULT FALSE
+    profile_picture VARCHAR(255) DEFAULT "/static/images/defaultAvatar.jpg",
+    note INT UNSIGNED DEFAULT 0,
+    is_validated BOOLEAN DEFAULT FALSE
 );
 
 create table role (
