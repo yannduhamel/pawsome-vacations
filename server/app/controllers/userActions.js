@@ -24,10 +24,9 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const user = req.body;
-
+  const user = { ...req.body, id: req.params.id };
   try {
-    await tables.user.update(req.params.id, user);
+    await tables.user.update(user);
     res.sendStatus(204);
   } catch (err) {
     next(err);

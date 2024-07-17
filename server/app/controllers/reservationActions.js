@@ -24,10 +24,10 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const reservation = req.body;
+  const reservation = { ...req.body, id: req.params.id };
 
   try {
-    await tables.reservation.update(req.params.id, reservation);
+    await tables.reservation.update(reservation);
     res.sendStatus(204);
   } catch (err) {
     next(err);

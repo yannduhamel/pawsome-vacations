@@ -24,10 +24,10 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const amenity = req.body;
+  const amenity = { ...req.body, id: req.params.id };
 
   try {
-    await tables.amenity.update(req.params.id, amenity);
+    await tables.amenity.update(amenity);
     res.sendStatus(204);
   } catch (err) {
     next(err);

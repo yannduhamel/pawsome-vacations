@@ -24,10 +24,10 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const role = req.body;
+  const role = { ...req.body, id: req.params.id };
 
   try {
-    await tables.role.update(req.params.id, role);
+    await tables.role.update(role);
     res.sendStatus(204);
   } catch (err) {
     next(err);
