@@ -15,14 +15,14 @@ const accomodationsRouter = require("./accomodations/router");
 const reservationsRouter = require("./reservations/router");
 const paymentsRouter = require("./payments/router");
 
-router.use("/users", usersRouter);
-router.use("/roles", rolesRouter);
-router.use("/animals", animalsRouter);
-router.use("/amenities", amenitiesRouter);
-router.use("/accomodationCategories", accomodationCategoriesRouter);
-router.use("/accomodations", accomodationsRouter);
-router.use("/reservations", reservationsRouter);
-router.use("/payments", paymentsRouter);
+router.use("/user", usersRouter);
+router.use("/role", rolesRouter);
+router.use("/animal", animalsRouter);
+router.use("/amenity", amenitiesRouter);
+router.use("/accomodationcategory", accomodationCategoriesRouter);
+router.use("/accomodation", accomodationsRouter);
+router.use("/reservation", reservationsRouter);
+router.use("/payment", paymentsRouter);
 
 /* ************************************************************************* */
 
