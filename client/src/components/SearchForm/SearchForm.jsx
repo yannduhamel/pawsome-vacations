@@ -96,7 +96,7 @@ export default function SearchForm() {
         {errors.category && <span>{errors.category.message}</span>}
         <div className="searchBottomContainer">
           <button type="submit" className="searchButton">
-            Valider
+            Rechercher
           </button>
         </div>
       </form>

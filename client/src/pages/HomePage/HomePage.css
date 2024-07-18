@@ -9,3 +9,13 @@ main {
   font-size: 2rem;
   color: var(--main-color);
 }
+
+@media screen and (min-width: 768px) {
+  .categoryContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 60svw;
+  }
+}

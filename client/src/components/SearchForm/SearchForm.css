@@ -80,3 +80,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
+
+@media screen and (min-width: 768px) {
+  .searchForm {
+    width: 40svw;
+  }
+
+  .searchButton {
+    width: 60%;
+  }
+}

@@ -11,6 +11,9 @@
   height: 80%;
   background-color: var(--secondary-color);
   border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 2rem;
 }
 
 .registerInput {
@@ -44,6 +47,8 @@
   font-family: "Fredoka";
   font-size: 1.3rem;
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .registerBottomText {
@@ -56,4 +61,10 @@
   color: var(--main-color);
   font-family: "Barlow";
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .registerForm {
+    width: 40svw;
+  }
 }
