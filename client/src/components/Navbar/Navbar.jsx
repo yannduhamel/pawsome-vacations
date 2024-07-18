@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({ currentUser = null, setCurrentUser }) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/");
@@ -14,7 +16,7 @@ export default function Navbar() {
         Pawsome <br />
         Vacations
       </button>
-      <BurgerMenu />
+      <BurgerMenu currentUser={currentUser} setCurrentUser={setCurrentUser} />
     </nav>
   );
 }

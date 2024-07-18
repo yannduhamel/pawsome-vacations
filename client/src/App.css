@@ -15,6 +15,11 @@
   src: url(/static/fonts/Fredoka.ttf);
 }
 
+@font-face {
+  font-family: "Barlow";
+  src: url(/static/fonts/Barlow-Regular.ttf);
+}
+
 body {
   background-color: var(--tertiary-color);
 }

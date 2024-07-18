@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
+
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import handleLogout from "../../../lib/logout";
 import "./BurgerMenu.css";
 
-function Menu() {
+function Menu({ currentUser = null, setCurrentUser }) {
   const [showLinks, setShowLinks] = useState(false);
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
@@ -11,20 +14,31 @@ function Menu() {
   return (
     <div className={`menu ${showLinks ? "active" : "inactive"}`}>
       <ul className="navbarList">
+        {currentUser ? (
+          <li className="navbarItem welcomeMessage">
+            Bonjour {currentUser.firstname} !
+          </li>
+        ) : null}
         <li className="navbarItem">
           <NavLink to="/" className="navbarLink" onClick={handleShowLinks}>
             Accueil
           </NavLink>
         </li>
         <li className="navbarItem">
-          <NavLink to="/" className="navbarLink" onClick={handleShowLinks}>
-            Suivez-nous
-          </NavLink>
-        </li>
-        <li className="navbarItem">
-          <NavLink to="/" className="navbarLink" onClick={handleShowLinks}>
-            Licence
-          </NavLink>
+          {currentUser ? (
+            <button type="button" onClick={() => handleLogout(setCurrentUser)}>
+              Déconnexion
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className="navbarLink"
+              onClick={handleShowLinks}
+            >
+              {" "}
+              Connexion{" "}
+            </NavLink>
+          )}
         </li>
       </ul>
       <button

@@ -1,8 +1,8 @@
-.registerContainer {
-  height: 92svh;
+.loginContainer {
+  height: 70svh;
 }
 
-.registerForm {
+.loginForm {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -13,28 +13,36 @@
   border-radius: 20px;
 }
 
-.registerInput {
+.loginInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.loginInput {
   width: 80%;
   height: 40px;
   border-radius: 10px;
   border: none;
   padding: 10px;
+  margin: 1rem 0;
   font-size: 1.1rem;
   font-family: "Barlow";
   background-color: var(--tertiary-color);
   color: var(--main-color);
 }
 
-.registerBottomContainer {
+.loginBottomContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 80%;
-  height: 20%;
 }
 
-.registerButton {
+.loginButton {
   width: 80%;
   height: 40px;
   border-radius: 10px;
@@ -46,13 +54,14 @@
   cursor: pointer;
 }
 
-.registerBottomText {
+.loginBottomText {
   font-family: "Barlow";
   font-size: 0.9rem;
   color: var(--main-color);
+  margin: 0.8rem 0;
 }
 
-.loginRedirect {
+.registerRedirect {
   color: var(--main-color);
   font-family: "Barlow";
   cursor: pointer;

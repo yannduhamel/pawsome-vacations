@@ -14,6 +14,7 @@ const accomodationCategoriesRouter = require("./accomodationsCategories/router")
 const accomodationsRouter = require("./accomodations/router");
 const reservationsRouter = require("./reservations/router");
 const paymentsRouter = require("./payments/router");
+const authRouter = require("./auth/router");
 
 router.use("/user", usersRouter);
 router.use("/role", rolesRouter);
@@ -23,6 +24,7 @@ router.use("/accomodationcategory", accomodationCategoriesRouter);
 router.use("/accomodation", accomodationsRouter);
 router.use("/reservation", reservationsRouter);
 router.use("/payment", paymentsRouter);
+router.use("/auth", authRouter);
 
 /* ************************************************************************* */
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -116,15 +116,25 @@ export default function RegisterPage() {
             pattern: {
               value:
                 /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,20}$/,
+              message: "Format de mot de passe invalide",
             },
             validate: (value) =>
               value === watch("password") ||
               "Les mots de passe ne correspondent pas",
           })}
         />
-        <button type="submit" className="registerButton">
-          Valider
-        </button>
+        {errors.confirmpassword && (
+          <span> {errors.confirmpassword.message}</span>
+        )}
+        <div className="registerBottomContainer">
+          <button type="submit" className="registerButton">
+            Valider
+          </button>
+          <p className="registerBottomText">Vous avez déjà un compte?</p>{" "}
+          <NavLink to="/login" className="loginRedirect">
+            Connectez-vous
+          </NavLink>
+        </div>
       </form>
     </main>
   );
