@@ -1,24 +1,29 @@
-.loginContainer {
-  height: 70svh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.searchContainer {
+  height: 90svh;
 }
 
-.loginForm {
+.searchForm {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 90svw;
-  height: 80%;
+  height: 90%;
   background-color: var(--secondary-color);
   border-radius: 20px;
+  margin: auto 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-.loginInputContainer {
+.searchFormTitle {
+  font-family: "Fredoka";
+  font-size: 1.8rem;
+  color: var(--main-color);
+  text-align: center;
+}
+
+.searchInputContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -26,8 +31,8 @@
   width: 100%;
 }
 
-.loginInput {
-  width: 80%;
+.searchInput,
+.searchDateInput {
   height: 40px;
   border-radius: 10px;
   border: none;
@@ -39,7 +44,22 @@
   color: var(--main-color);
 }
 
-.loginBottomContainer {
+.searchInput {
+  width: 80%;
+}
+
+.searchDateContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.searchDateInput {
+  font-size: 0.8rem;
+}
+
+.searchBottomContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -47,7 +67,7 @@
   width: 80%;
 }
 
-.loginButton {
+.searchButton {
   width: 80%;
   height: 40px;
   border-radius: 10px;
@@ -59,17 +79,4 @@
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-}
-
-.loginBottomText {
-  font-family: "Barlow";
-  font-size: 0.9rem;
-  color: var(--main-color);
-  margin: 0.8rem 0;
-}
-
-.registerRedirect {
-  color: var(--main-color);
-  font-family: "Barlow";
-  cursor: pointer;
 }

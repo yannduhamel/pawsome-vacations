@@ -74,6 +74,28 @@ class AccomodationRepository extends AbstractRepository {
 
     return result.affectedRows > 0;
   }
+
+  async searchAccomodation() {
+    const [rows] = await this.database.query(
+      `select a.id,
+    a.name,
+    a.adress,
+    a.zip_code,
+    a.city,
+    a.description,
+    a.note,
+    a.price_per_night,
+    a.max_adults,
+    a.max_children,
+    a.max_pets,
+    a.is_validated,
+    ac.name,
+    r.check_in_date,
+    r.check_out_date from ${this.table} as a join acc_category as ac on a.acc_category_id = ac.id join reservation as r on a.id = r.accomodation_id `
+    );
+
+    return rows;
+  }
 }
 
 module.exports = AccomodationRepository;

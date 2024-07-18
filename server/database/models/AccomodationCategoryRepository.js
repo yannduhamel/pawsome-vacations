@@ -7,8 +7,8 @@ class AccomodationCategoryRepository extends AbstractRepository {
 
   async create(accCategory) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (name) values (?)`,
-      [accCategory.name]
+      `insert into ${this.table} (category_name, category_image ) values (?, ?)`,
+      [accCategory.category_name, accCategory.category_image]
     );
 
     return result.insertId;
@@ -31,8 +31,8 @@ class AccomodationCategoryRepository extends AbstractRepository {
 
   async update(accCategory) {
     const [result] = await this.database.query(
-      `update ${this.table} set name = ? where id = ?`,
-      [accCategory.name, accCategory.id]
+      `update ${this.table} set category_name = ?, set category_image where id = ?`,
+      [accCategory.category_name, accCategory.cateogory_image, accCategory.id]
     );
 
     return result.affectedRows > 0;

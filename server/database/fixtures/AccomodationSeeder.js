@@ -1,14 +1,13 @@
 const AbstractSeeder = require("./AbstractSeeder");
 
 const UserSeeder = require("./UserSeeder");
-const AccomodationCategorySeeder = require("./AccomodationCategorySeeder");
 
 class AccomodationSeeder extends AbstractSeeder {
   constructor() {
     super({
       table: "accomodation",
       truncate: true,
-      dependencies: [UserSeeder, AccomodationCategorySeeder],
+      dependencies: [UserSeeder],
     });
   }
 

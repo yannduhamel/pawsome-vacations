@@ -33,7 +33,8 @@ create table animal (
 
 create table acc_category (
     id int unsigned primary key auto_increment not null,
-    name varchar(255) not null
+    category_name varchar(255) not null,
+    category_image varchar(255) not null
 );
 
 create table amenity (
