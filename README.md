@@ -9,6 +9,7 @@ The project leverages modern technologies to ensure a smooth and secure user exp
 - **Harmonia Educational Framework**: An educational framework that facilitates learning and implementing best development practices.
 - **React**: A JavaScript library for building interactive and responsive user interfaces.
 - **React Hook Form**: A performant library for managing forms in React applications.
+- **Argon 2**: Used for encrypt user password.
 - **JSON Web Token (JWT)**: Used for secure user authentication and authorization.
 - **Cookie Parser**: A middleware for managing cookies in HTTP requests, facilitating user session management.
 - **Zod**: A schema validation library to ensure data integrity and form validation.
