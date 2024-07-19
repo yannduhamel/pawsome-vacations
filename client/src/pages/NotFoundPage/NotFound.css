@@ -1,0 +1,56 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65svh;
+  color: var(--main-color);
+  margin: 1rem;
+}
+
+.errorTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Fredoka";
+  text-align: center;
+}
+
+.errorImage {
+  max-width: 80svw;
+  height: auto;
+}
+
+.errorContainer {
+  margin: 2rem 0;
+  font-family: "Barlow";
+  font-size: 1.2rem;
+}
+
+.redirectContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeRedirect {
+  margin-left: 0.2rem;
+}
+
+.homeRedirect:hover {
+  font-weight: bolder;
+}
+
+.homeRedirect:visited {
+  color: var(--main-color);
+}
+
+@media screen and (min-width: 768px) {
+  .errorTitle {
+    font-size: 4rem;
+  }
+
+  .errorContainer {
+    font-size: 2rem;
+  }
+}

@@ -6,6 +6,7 @@ import App from "./App";
 import HomePage from "./pages/HomePage/HomePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import NotFound from "./pages/NotFoundPage/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <h1>Page not found</h1>,
+        element: <NotFound />,
       },
     ],
   },
