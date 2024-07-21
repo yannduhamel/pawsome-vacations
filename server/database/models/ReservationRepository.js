@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class ReservationRepository extends AbstractRepository {
@@ -6,17 +7,28 @@ class ReservationRepository extends AbstractRepository {
   }
 
   async create(reservation) {
+    const {
+      booking_date,
+      check_in_date,
+      check_out_date,
+      adults_number,
+      children_number,
+      pets_number,
+      user_id,
+      accomodation_id,
+    } = reservation;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (booking_date, check_in_date, check_out_date, adults_number, children_number, pets_number, user_id, accomodation_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (booking_date, check_in_date, check_out_date, adults_number, children_number, pets_number, user_id, accomodation_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        reservation.booking_date,
-        reservation.check_in_date,
-        reservation.check_out_date,
-        reservation.adults_number,
-        reservation.children_number,
-        reservation.pets_number,
-        reservation.user_id,
-        reservation.accomodation_id,
+        booking_date,
+        check_in_date,
+        check_out_date,
+        adults_number,
+        children_number,
+        pets_number,
+        user_id,
+        accomodation_id,
       ]
     );
 
@@ -25,7 +37,7 @@ class ReservationRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -33,22 +45,32 @@ class ReservationRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(reservation) {
+    const {
+      booking_date,
+      check_in_date,
+      check_out_date,
+      adults_number,
+      children_number,
+      pets_number,
+      id,
+    } = reservation;
+
     const [result] = await this.database.query(
-      `update ${this.table} set booking_date = ?, check_in_date = ?, check_out_date = ?, adults_number = ?, children_number = ?, pets_number = ? where id = ?`,
+      `UPDATE ${this.table} SET booking_date = ?, check_in_date = ?, check_out_date = ?, adults_number = ?, children_number = ?, pets_number = ? WHERE id = ?`,
       [
-        reservation.booking_date,
-        reservation.check_in_date,
-        reservation.check_out_date,
-        reservation.adults_number,
-        reservation.children_number,
-        reservation.pets_number,
-        reservation.id,
+        booking_date,
+        check_in_date,
+        check_out_date,
+        adults_number,
+        children_number,
+        pets_number,
+        id,
       ]
     );
 
@@ -57,7 +79,7 @@ class ReservationRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
