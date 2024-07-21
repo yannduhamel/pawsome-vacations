@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+}
+
+.navLogo {
+  border: none;
+  background-color: transparent;
+  color: var(--main-color);
+  font-family: "Fredoka";
+  font-size: 1.7rem;
+  font-weight: bold;
+  cursor: pointer;
+}
