@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const accomodation = await tables.accomodation.read(req.params.id);
+    const accomodation = await tables.accomodation.read(id);
 
     if (accomodation == null) {
       res.sendStatus(404);
@@ -25,9 +27,10 @@ const read = async (req, res, next) => {
 
 const edit = async (req, res, next) => {
   const accomodation = req.body;
+  const { id } = req.params;
 
   try {
-    await tables.accomodation.update(req.params.id, accomodation);
+    await tables.accomodation.update(id, accomodation);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -46,8 +49,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.accomodation.delete(req.params.id);
+    await tables.accomodation.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
