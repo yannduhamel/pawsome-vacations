@@ -6,9 +6,11 @@ class RoleRepository extends AbstractRepository {
   }
 
   async create(role) {
+    const { name } = role;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (name) values (?)`,
-      [role.name]
+      `INSERT INTO ${this.table} (name) VALUES (?)`,
+      [name]
     );
 
     return result.insertId;
@@ -16,7 +18,7 @@ class RoleRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -24,15 +26,17 @@ class RoleRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(role) {
+    const { name, id } = role;
+
     const [result] = await this.database.query(
-      `update ${this.table} set name = ? where id = ?`,
-      [role.name, role.id]
+      `UPDATE ${this.table} SET name = ? WHERE id = ?`,
+      [name, id]
     );
 
     return result.affectedRows > 0;
@@ -40,7 +44,7 @@ class RoleRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
