@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class AccomodationRepository extends AbstractRepository {
@@ -6,22 +7,38 @@ class AccomodationRepository extends AbstractRepository {
   }
 
   async create(accomodation) {
+    const {
+      name,
+      adress,
+      zip_code,
+      city,
+      description,
+      note,
+      price_per_night,
+      max_adults,
+      max_children,
+      max_pets,
+      is_validated,
+      user_id,
+      acc_category_id,
+    } = accomodation;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (name, adress, zip_code, city, description, note, price_per_night, max_adults, max_children, max_pets, is_validated, user_id, acc_category_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, adress, zip_code, city, description, note, price_per_night, max_adults, max_children, max_pets, is_validated, user_id, acc_category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        accomodation.name,
-        accomodation.adress,
-        accomodation.zip_code,
-        accomodation.city,
-        accomodation.description,
-        accomodation.note,
-        accomodation.price_per_night,
-        accomodation.max_adults,
-        accomodation.max_children,
-        accomodation.max_pets,
-        accomodation.is_validated,
-        accomodation.user_id,
-        accomodation.acc_category_id,
+        name,
+        adress,
+        zip_code,
+        city,
+        description,
+        note,
+        price_per_night,
+        max_adults,
+        max_children,
+        max_pets,
+        is_validated,
+        user_id,
+        acc_category_id,
       ]
     );
 
@@ -30,7 +47,7 @@ class AccomodationRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -38,28 +55,44 @@ class AccomodationRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(accomodation) {
+    const {
+      name,
+      adress,
+      zip_code,
+      city,
+      description,
+      note,
+      price_per_night,
+      max_adults,
+      max_children,
+      max_pets,
+      is_validated,
+      user_id,
+      acc_category_id,
+    } = accomodation;
+
     const [result] = await this.database.query(
-      `update ${this.table} set name = ?, adress = ?, zip_code = ?, city = ?, description = ?, note = ?, price_per_night = ?, max_adults = ?, max_children = ?, max_pets = ?, is_validated = ?, user_id = ?, acc_category_id = ? where id = ?`,
+      `UPDATE ${this.table} SET name = ?, adress = ?, zip_code = ?, city = ?, description = ?, note = ?, price_per_night = ?, max_adults = ?, max_children = ?, max_pets = ?, is_validated = ?, user_id = ?, acc_category_id = ? WHERE id = ?`,
       [
-        accomodation.name,
-        accomodation.adress,
-        accomodation.zip_code,
-        accomodation.city,
-        accomodation.description,
-        accomodation.note,
-        accomodation.price_per_night,
-        accomodation.max_adults,
-        accomodation.max_children,
-        accomodation.max_pets,
-        accomodation.is_validated,
-        accomodation.user_id,
-        accomodation.acc_category_id,
+        name,
+        adress,
+        zip_code,
+        city,
+        description,
+        note,
+        price_per_night,
+        max_adults,
+        max_children,
+        max_pets,
+        is_validated,
+        user_id,
+        acc_category_id,
       ]
     );
 
@@ -68,7 +101,7 @@ class AccomodationRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -77,21 +110,7 @@ class AccomodationRepository extends AbstractRepository {
 
   async searchAccomodation() {
     const [rows] = await this.database.query(
-      `select a.id,
-    a.name,
-    a.adress,
-    a.zip_code,
-    a.city,
-    a.description,
-    a.note,
-    a.price_per_night,
-    a.max_adults,
-    a.max_children,
-    a.max_pets,
-    a.is_validated,
-    ac.name,
-    r.check_in_date,
-    r.check_out_date from ${this.table} as a join acc_category as ac on a.acc_category_id = ac.id join reservation as r on a.id = r.accomodation_id `
+      `SELECT a.id, a.name, a.adress, a.zip_code, a.city, a.description, a.note, a.price_per_night, a.max_adults, a.max_children, a.max_pets, a.is_validated, ac.name, r.check_in_date, r.check_out_date FROM ${this.table} AS a JOIN acc_category AS ac ON a.acc_category_id = ac.id JOIN reservation AS r ON a.id = r.accomodation_id `
     );
 
     return rows;

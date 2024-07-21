@@ -29,7 +29,9 @@ function App() {
         transition:Bounce
       />
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      <Outlet context={{ currentUser, setCurrentUser }} />
+      <main>
+        <Outlet context={{ currentUser, setCurrentUser }} />
+      </main>
       <Footer />
     </>
   );

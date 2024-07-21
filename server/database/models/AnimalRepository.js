@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class AnimalRepository extends AbstractRepository {
@@ -6,9 +7,11 @@ class AnimalRepository extends AbstractRepository {
   }
 
   async create(animal) {
+    const { species, size, user_id } = animal;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (species, size, user_id) values (?, ?, ?)`,
-      [animal.species, animal.size, animal.user_id]
+      `INSERT INTO ${this.table} (species, size, user_id) VALUES (?, ?, ?)`,
+      [species, size, user_id]
     );
 
     return result.insertId;
@@ -16,7 +19,7 @@ class AnimalRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -24,15 +27,17 @@ class AnimalRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(animal) {
+    const { size, id } = animal;
+
     const [result] = await this.database.query(
-      `update ${this.table} set size = ? where id = ?`,
-      [animal.size, animal.id]
+      `UPDATE ${this.table} SET size = ? WHERE id = ?`,
+      [size, id]
     );
 
     return result.affectedRows > 0;
@@ -40,7 +45,7 @@ class AnimalRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class UserRepository extends AbstractRepository {
@@ -6,16 +7,11 @@ class UserRepository extends AbstractRepository {
   }
 
   async create(user) {
+    const { firstname, lastname, email, phone_number, password } = user;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, email, phone_number, password, profile_picture) values (?, ?, ?, ?, ?, ?)`,
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.phone_number,
-        user.password,
-        user.profile_picture,
-      ]
+      `INSERT INTO ${this.table} (firstname, lastname, email, phone_number, password, profile_picture) VALUES (?, ?, ?, ?, ?, ?)`,
+      [firstname, lastname, email, phone_number, password]
     );
 
     return result.insertId;
@@ -23,7 +19,7 @@ class UserRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -31,24 +27,36 @@ class UserRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(user) {
+    const {
+      firstname,
+      lastname,
+      email,
+      phone_number,
+      password,
+      profile_picture,
+      note,
+      is_validated,
+      id,
+    } = user;
+
     const [result] = await this.database.query(
-      `update ${this.table} set firstname = ?, lastname = ?, email = ?, phone_number = ?, password = ?, profile_picture = ?, note = ?, is_validated = ? where id = ?`,
+      `UPDATE ${this.table} SET firstname = ?, lastname = ?, email = ?, phone_number = ?, password = ?, profile_picture = ?, note = ?, is_validated = ? WHERE id = ?`,
       [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.phone_number,
-        user.password,
-        user.profile_picture,
-        user.note,
-        user.is_validated,
-        user.id,
+        firstname,
+        lastname,
+        email,
+        phone_number,
+        password,
+        profile_picture,
+        note,
+        is_validated,
+        id,
       ]
     );
 
@@ -57,7 +65,7 @@ class UserRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 

@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const reservation = await tables.reservation.read(req.params.id);
+    const reservation = await tables.reservation.read(id);
 
     if (reservation == null) {
       res.sendStatus(404);
@@ -46,8 +48,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.reservation.delete(req.params.id);
+    await tables.reservation.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
