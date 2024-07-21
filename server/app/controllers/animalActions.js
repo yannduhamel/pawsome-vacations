@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const animal = await tables.animal.read(req.params.id);
+    const animal = await tables.animal.read(id);
 
     if (animal == null) {
       res.sendStatus(404);
@@ -46,8 +48,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.animal.delete(req.params.id);
+    await tables.animal.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
