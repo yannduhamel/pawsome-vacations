@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class AccomodationCategoryRepository extends AbstractRepository {
@@ -6,9 +7,11 @@ class AccomodationCategoryRepository extends AbstractRepository {
   }
 
   async create(accCategory) {
+    const { category_name, category_image } = accCategory;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (category_name, category_image ) values (?, ?)`,
-      [accCategory.category_name, accCategory.category_image]
+      `INSERT INTO ${this.table} (category_name, category_image ) VALUES (?, ?)`,
+      [category_name, category_image]
     );
 
     return result.insertId;
@@ -16,7 +19,7 @@ class AccomodationCategoryRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -24,15 +27,17 @@ class AccomodationCategoryRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(accCategory) {
+    const { category_name, category_image, id } = accCategory;
+
     const [result] = await this.database.query(
-      `update ${this.table} set category_name = ?, set category_image where id = ?`,
-      [accCategory.category_name, accCategory.cateogory_image, accCategory.id]
+      `UPDATE ${this.table} SET category_name = ?, set category_image WHERE id = ?`,
+      [category_name, category_image, id]
     );
 
     return result.affectedRows > 0;
@@ -40,7 +45,7 @@ class AccomodationCategoryRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
