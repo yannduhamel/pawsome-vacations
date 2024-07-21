@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const user = await tables.user.read(req.params.id);
+    const user = await tables.user.read(id);
 
     if (user == null) {
       res.sendStatus(404);
@@ -25,6 +27,7 @@ const read = async (req, res, next) => {
 
 const edit = async (req, res, next) => {
   const user = { ...req.body, id: req.params.id };
+
   try {
     await tables.user.update(user);
     res.sendStatus(204);
@@ -45,8 +48,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.user.delete(req.params.id);
+    await tables.user.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
