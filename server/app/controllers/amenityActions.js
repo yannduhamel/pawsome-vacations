@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const amenity = await tables.amenity.read(req.params.id);
+    const amenity = await tables.amenity.read(id);
 
     if (amenity == null) {
       res.sendStatus(404);
@@ -46,8 +48,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.amenity.delete(req.params.id);
+    await tables.amenity.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
