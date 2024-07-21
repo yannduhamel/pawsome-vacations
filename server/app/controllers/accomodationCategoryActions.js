@@ -10,8 +10,10 @@ const browse = async (req, res, next) => {
 };
 
 const read = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const accCategory = await tables.acc_category.read(req.params.id);
+    const accCategory = await tables.acc_category.read(id);
 
     if (accCategory == null) {
       res.sendStatus(404);
@@ -46,8 +48,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    await tables.acc_category.delete(req.params.id);
+    await tables.acc_category.delete(id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
