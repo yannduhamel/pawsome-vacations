@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class PaymentRepository extends AbstractRepository {
@@ -6,9 +7,11 @@ class PaymentRepository extends AbstractRepository {
   }
 
   async create(payment) {
+    const { amount, date, method, reservation_id } = payment;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (amount, date, method, reservation_id) values (?, ?, ?, ?)`,
-      [payment.amount, payment.date, payment.method, payment.reservation_id]
+      `INSERT INTO ${this.table} (amount, date, method, reservation_id) VALUES (?, ?, ?, ?)`,
+      [amount, date, method, reservation_id]
     );
 
     return result.insertId;
@@ -16,7 +19,7 @@ class PaymentRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -24,14 +27,14 @@ class PaymentRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
