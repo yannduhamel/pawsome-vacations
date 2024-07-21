@@ -6,9 +6,11 @@ class AmenityRepository extends AbstractRepository {
   }
 
   async create(amenity) {
+    const { name, logo, category } = amenity;
+
     const [result] = await this.database.query(
-      `insert into ${this.table} (name, logo, category) values (?, ?, ?)`,
-      [amenity.name, amenity.logo, amenity.category]
+      `INSERT INTO ${this.table} (name, logo, category) VALUES (?, ?, ?)`,
+      [name, logo, category]
     );
 
     return result.insertId;
@@ -16,7 +18,7 @@ class AmenityRepository extends AbstractRepository {
 
   async read(id) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -24,15 +26,17 @@ class AmenityRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     return rows;
   }
 
   async update(amenity) {
+    const { name, logo, category, id } = amenity;
+
     const [result] = await this.database.query(
-      `update ${this.table} set name = ?, logo = ?, category = ? where id = ?`,
-      [amenity.name, amenity.logo, amenity.category, amenity.id]
+      `UPDATE ${this.table} SET name = ?, logo = ?, category = ? WHERE id = ?`,
+      [name, logo, category, id]
     );
 
     return result.affectedRows > 0;
@@ -40,7 +44,7 @@ class AmenityRepository extends AbstractRepository {
 
   async delete(id) {
     const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
+      `DELETE FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
