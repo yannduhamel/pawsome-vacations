@@ -6,11 +6,13 @@ const { encodeJWT, decodeJWT } = require("../helpers/jwtHelpers");
 const login = async (req, res) => {
   const { email, password } = req.body;
 
+  const genericError = "Le couple email/mot de passe est incorrect";
+
   const [user] = await tables.user.findUserByEmail(email);
 
   if (!user) {
     return res.status(404).json({
-      message: "Le couple email/mot de passe est incorrect",
+      message: genericError,
     });
   }
 
@@ -18,7 +20,7 @@ const login = async (req, res) => {
 
   if (!isAllowed) {
     return res.status(404).json({
-      message: "Le couple email/mot de passe est incorrect",
+      message: genericError,
     });
   }
 
