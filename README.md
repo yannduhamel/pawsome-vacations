@@ -18,6 +18,7 @@ The project leverages modern technologies to ensure a smooth and secure user exp
 
 
 Merise modeling methodology:
+
 ![Capture d'écran 2024-07-19 011159](https://github.com/user-attachments/assets/75289872-5e4d-4176-9b91-59599fb18092)
 ![Capture d'écran 2024-07-19 114356](https://github.com/user-attachments/assets/80cbf2bc-9c55-485c-ad90-55398ab78832)
 ![Capture d'écran 2024-07-19 114505](https://github.com/user-attachments/assets/aa9697fb-2bbd-4138-a1d8-38286561c409)
